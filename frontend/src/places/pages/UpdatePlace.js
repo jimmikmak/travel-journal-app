@@ -1,7 +1,7 @@
 import React from "react";
 
 const UpdatePlace = () => {
-  return <div>UpdatePlace</div>;
+  return <h2>UpdatePlace</h2>;
 };
 
 export default UpdatePlace;
