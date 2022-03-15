@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const express = require("express");
 
@@ -17,13 +18,20 @@ const DUMMY_PLACES = [
   },
 ];
 
-// eslint-disable-next-line no-unused-vars
 router.get("/:pid", (req, res, next) => {
   const placeId = req.params.pid; // { pid: "p1" }
   const place = DUMMY_PLACES.find((p) => {
     return p.id === placeId;
   });
   res.json({ place }); // => { place } => { place: place }
+});
+
+router.get("/user/:uid", (req, res, next) => {
+  const userId = req.params.uid;
+  const place = DUMMY_PLACES.find((p) => {
+    return p.creator === userId;
+  });
+  res.json({ place });
 });
 
 module.exports = router;
