@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+const { v4: uuid } = require("uuid");
+
 const HttpError = require("../models/http-error");
 
 const DUMMY_PLACES = [
@@ -46,7 +48,7 @@ const createPlace = (req, res, next) => {
   const { title, description, coordinates, address, creator } = req.body;
   // const title = req.body.title;
   const createdPlace = {
-    id:,
+    id: uuid(),
     title,
     description,
     location: coordinates,
