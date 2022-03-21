@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 const express = require("express");
 
-const placesControllers = require("../controllers/places-controller");
+const placesControllers = require("../controllers/places-controllers");
 
 const router = express.Router();
 
