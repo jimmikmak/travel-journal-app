@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const express = require("express");
+const { check } = require("express-validator");
 
 const placesControllers = require("../controllers/places-controllers");
 
@@ -10,7 +11,15 @@ router.get("/:pid", placesControllers.getPlaceById);
 
 router.get("/user/:uid", placesControllers.getPlacesByUserId);
 
-router.post("/", placesControllers.createPlace);
+router.post(
+  "/",
+  [
+    check("title").not().isEmpty(),
+    check("description").isLength({ min: 5 }),
+    check("address").not().isEmpty,
+  ],
+  placesControllers.createPlace
+);
 
 router.patch("/:pid", placesControllers.updatePlace);
 
