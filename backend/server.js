@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const express = require("express");
-
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const placesRoutes = require("./routes/places-routes");
 const usersRoutes = require("./routes/users-routes");
@@ -28,4 +28,13 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || "An unknown error occurred!" });
 });
 
-app.listen(5555);
+mongoose
+  .connect(
+    "mongodb+srv://jimmikmak:Mfmibttf43@cluster0.3ghp9.mongodb.net/travelJournal?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    app.listen(5555);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
