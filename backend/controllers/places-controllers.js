@@ -43,7 +43,7 @@ const getPlaceById = async (req, res, next) => {
     );
     return next(error);
   }
-  res.json({ place }); // => { place } => { place: place }
+  res.json({ place: place.toObject({ getters: true }) }); // => { place } => { place: place }
 };
 
 const getPlacesByUserId = (req, res, next) => {
