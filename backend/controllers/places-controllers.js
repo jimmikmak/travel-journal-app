@@ -99,8 +99,28 @@ const createPlace = async (req, res, next) => {
     creator,
   });
 
+  let user;
   try {
-    await createdPlace.save();
+    user = await User.findById(creator);
+  } catch (err) {
+    const error = new HttpError(
+      "Failed to create place, please try again.",
+      500
+    );
+    return next(error);
+  }
+
+  if (!user) {
+    const error = new HttpError("Could not find user for provided id.", 404);
+    return next(error);
+  }
+
+  console.log(user);
+
+  try {
+    const sesh = await mongoose.startSession();
+    sesh.startTransaction();
+    await createsPlace.save({ session: sesh });
   } catch (err) {
     const error = new HttpError(
       "Failed to create place, please try again.",
