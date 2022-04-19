@@ -121,8 +121,8 @@ const createPlace = async (req, res, next) => {
   try {
     const sesh = await mongoose.startSession();
     sesh.startTransaction();
-    await createsPlace.save({ session: sesh });
-    user.places.push(createPlace);
+    await createdPlace.save({ session: sesh });
+    user.places.push(createdPlace);
     await user.save({ session: sesh });
     await sesh.commitTransaction();
   } catch (err) {
