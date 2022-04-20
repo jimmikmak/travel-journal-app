@@ -10,7 +10,7 @@ const Place = require("../models/place");
 const User = require("../models/user");
 
 const getPlaceById = async (req, res, next) => {
-  const placeId = req.params.pid; // { pid: "p1" }
+  const placeId = req.params.pid;
 
   let place;
 
@@ -31,7 +31,7 @@ const getPlaceById = async (req, res, next) => {
     );
     return next(error);
   }
-  res.json({ place: place.toObject({ getters: true }) }); // => { place } => { place: place }
+  res.json({ place: place.toObject({ getters: true }) });
 };
 
 const getPlacesByUserId = async (req, res, next) => {
@@ -49,6 +49,7 @@ const getPlacesByUserId = async (req, res, next) => {
     return next(error);
   }
 
+  // if (!places || places.length === 0) {}
   if (!userWithPlaces || userWithPlaces.places.length === 0) {
     return next(
       new HttpError("Could not find places for the provided user id.", 404)
@@ -70,7 +71,6 @@ const createPlace = async (req, res, next) => {
   }
 
   const { title, description, address, creator } = req.body;
-  // const title = req.body.title;
 
   let coordinates;
   try {
