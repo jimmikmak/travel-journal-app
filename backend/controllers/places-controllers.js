@@ -9,20 +9,6 @@ const getCoordsForAddress = require("../util/location");
 const Place = require("../models/place");
 const User = require("../models/user");
 
-let DUMMY_PLACES = [
-  {
-    id: "p1",
-    title: "Sydney Opera House",
-    description: "One of the most famous opera houses in the world!",
-    location: {
-      lat: -33.8567844,
-      lng: 151.2152967,
-    },
-    address: "Bennelong Point, Sydney NSW 2000",
-    creator: "u1",
-  },
-];
-
 const getPlaceById = async (req, res, next) => {
   const placeId = req.params.pid; // { pid: "p1" }
 
