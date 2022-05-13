@@ -19,7 +19,7 @@ const ImageUpload = (props) => {
       <input
         id={props.id}
         ref={filePickerRef}
-        style={{ displaly: "none" }}
+        style={{ display: "none" }}
         type="file"
         accept=".jpg,.png,.jpeg"
         onChange={pickedHandler}
@@ -28,7 +28,9 @@ const ImageUpload = (props) => {
         <div className="image-upload__preview">
           <img src="" alt="Preview" />
         </div>
-        <Button type="button" onClick={pickImageHandler}></Button>
+        <Button type="button" onClick={pickImageHandler}>
+          PICK IMAGE
+        </Button>
       </div>
     </div>
   );
