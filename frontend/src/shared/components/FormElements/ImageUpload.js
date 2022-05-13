@@ -6,6 +6,10 @@ import "./ImageUpload.css";
 const ImageUpload = (props) => {
   const filePickerRef = useRef();
 
+  const pickedHandler = (event) => {
+    console.log(event.target);
+  };
+
   const pickImageHandler = () => {
     filePickerRef.current.click();
   };
@@ -18,6 +22,7 @@ const ImageUpload = (props) => {
         style={{ displaly: "none" }}
         type="file"
         accept=".jpg,.png,.jpeg"
+        onChange={pickedHandler}
       />
       <div className={`image-upload ${props.center && "center"}`}>
         <div className="image-upload__preview">
