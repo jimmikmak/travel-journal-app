@@ -1,13 +1,28 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import Button from "./Button";
 import "./ImageUpload.css";
 
 const ImageUpload = (props) => {
+  const [file, setFile] = useState();
+  const [previewUrl, setPreviewUrl] = useState();
+  const [isValid, setIsValid] = useState(false);
+
   const filePickerRef = useRef();
 
   const pickedHandler = (event) => {
-    console.log(event.target);
+    let pickedFile;
+    let fileIsValid = isValid;
+    if (event.target.files && event.target.files.length === 1) {
+      pickedFile = event.target.files[0];
+      setFile(pickedFile);
+      setIsValid(true);
+      fileIsValid = true;
+    } else {
+      setIsValid(false);
+      fileIsValid = false;
+    }
+    props.onInput(props.id, pickedFile, isValid, fileIsValid);
   };
 
   const pickImageHandler = () => {
