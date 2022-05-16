@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 const { validationResult } = require("express-validator");
 
 const HttpError = require("../models/http-error");
@@ -32,13 +31,16 @@ const signup = async (req, res, next) => {
   try {
     existingUser = await User.findOne({ email: email });
   } catch (err) {
-    const error = new HttpError("Signup failed, please try again later.", 500);
+    const error = new HttpError(
+      "Signing up failed, please try again later.",
+      500
+    );
     return next(error);
   }
 
   if (existingUser) {
     const error = new HttpError(
-      "User already exists, please login instead.",
+      "User exists already, please login instead.",
       422
     );
     return next(error);
@@ -47,8 +49,7 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name,
     email,
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Sydney_Opera_House%2C_vivid_Sydey.JPG/2880px-Sydney_Opera_House%2C_vivid_Sydey.JPG",
+    image: "https://live.staticflickr.com/7631/26849088292_36fc52ee90_b.jpg",
     password,
     places: [],
   });
@@ -56,7 +57,10 @@ const signup = async (req, res, next) => {
   try {
     await createdUser.save();
   } catch (err) {
-    const error = new HttpError("Signup failed, please try again later.", 500);
+    const error = new HttpError(
+      "Signing up failed, please try again later.",
+      500
+    );
     return next(error);
   }
 
@@ -71,7 +75,10 @@ const login = async (req, res, next) => {
   try {
     existingUser = await User.findOne({ email: email });
   } catch (err) {
-    const error = new HttpError("Login failed, please try again later.", 500);
+    const error = new HttpError(
+      "Loggin in failed, please try again later.",
+      500
+    );
     return next(error);
   }
 
