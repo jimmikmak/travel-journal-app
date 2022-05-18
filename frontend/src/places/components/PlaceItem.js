@@ -75,7 +75,7 @@ const PlaceItem = (props) => {
         }
       >
         <p>
-          Do you wnat to proceed and delete this place? Please note that this
+          Do you want to proceed and delete this place? Please note that this
           can't be undone thereafter.
         </p>
       </Modal>
