@@ -12,6 +12,8 @@ router.get("/:pid", placesControllers.getPlaceById);
 
 router.get("/user/:uid", placesControllers.getPlacesByUserId);
 
+router.use();
+
 router.post(
   "/",
   fileUpload.single("image"),
